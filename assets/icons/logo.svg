@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" role="img" aria-label="NOVAVISUAL Publicidad">
+  <style>
+    .w { font: 900 28px Montserrat, system-ui, sans-serif; letter-spacing: -0.28px; fill: #FFFFFF; }
+    .t { font: 500 10px Montserrat, system-ui, sans-serif; letter-spacing: 2.5px; fill: #BDBDC1; }
+  </style>
+  <text class="w" x="0" y="28">NOVAVISUAL</text>
+  <path d="M12 0C13 7 17 11 24 12C17 13 13 17 12 24C11 17 7 13 0 12C7 11 11 7 12 0Z" transform="translate(202 4) scale(0.5)" fill="#FFFFFF"/>
+  <text class="t" x="1" y="48">PUBLICIDAD</text>
+</svg>

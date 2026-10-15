@@ -1,0 +1,108 @@
+/* ==========================================================================
+   NOVAVISUAL PUBLICIDAD — Tokens
+   Extraídos de "NOVAVISUAL — Sistema de diseño.html" (v1.0).
+   No inventar valores nuevos: todo lo que se usa en la landing vive aquí.
+   ========================================================================== */
+
+:root {
+  /* --- Color · Neutros ------------------------------------------------- */
+  --nv-black:          #0B0B0C; /* fondo principal */
+  --nv-graphite:       #1C1C1E; /* tarjetas sobre negro */
+  --nv-graphite-line:  #2A2A2E; /* hairlines y fondo de mockup */
+  --nv-silver-light:   #E6E6E8; /* centro del degradado */
+  --nv-silver:         #BDBDC1; /* bordes del degradado · texto sobre negro */
+  --nv-white:          #FFFFFF; /* logo y títulos sobre negro */
+  --nv-ink-soft:       #3A3A3E; /* texto secundario sobre plata */
+  --nv-muted:          #8E8E93; /* notas de mockup */
+
+  /* --- Color · Acentos (uno por tarjeta, solo títulos y detalles) ------ */
+  --nv-gold:           #D4A21C; /* dorado mostaza · acento principal */
+  --nv-gold-hover:     #E8B93A;
+  --nv-gold-on-silver: #8A6400; /* oscurecido para contraste AA sobre plata */
+  --nv-orange:         #F47B20; /* naranja · acento de categoría */
+  --nv-orange-on-silver: #B5500A;
+  --nv-purple:         #7B2FF2; /* morado eléctrico · detalles y sobre plata */
+  --nv-purple-light:   #9A5BFF; /* variante clara para texto sobre negro */
+
+  /* --- Color · WhatsApp (único uso del verde: botón de cotizar) -------- */
+  --nv-whatsapp:       #25D366;
+
+  /* --- Fondos ---------------------------------------------------------- */
+  /* Único degradado permitido: metálico radial, luz al centro. */
+  --nv-silver-gradient:
+    radial-gradient(ellipse at 50% 45%, #FFFFFF 0%, #E6E6E8 45%, #BDBDC1 100%);
+  --nv-silver-gradient-high:
+    radial-gradient(ellipse at 50% 30%, #FFFFFF 0%, #E6E6E8 45%, #BDBDC1 100%);
+  --nv-paper-opacity: 0.10; /* textura de papel arrugado al 8–12% */
+
+  /* --- Tipografía ------------------------------------------------------ */
+  --nv-font-display: "Montserrat", system-ui, -apple-system, sans-serif;
+  --nv-font-body:    "Inter", system-ui, -apple-system, sans-serif;
+
+  --nv-weight-label:   500; /* etiquetas y subtítulos de producto */
+  --nv-weight-strong:  700; /* botones y micro-títulos */
+  --nv-weight-badge:   800; /* monograma NV · H3 */
+  --nv-weight-display: 900; /* display */
+
+  /* Escala: 72 H1 (48 móvil) · 48 H2 (32 móvil) · 32 H3 · 20 Sub · 16 Body · 13 Small */
+  --nv-size-h1:    clamp(3rem, 11vw, 4.5rem);
+  --nv-size-h2:    clamp(2rem, 7vw, 3rem);
+  --nv-size-h3:    2rem;
+  --nv-size-sub:   1.25rem;
+  --nv-size-body:  1rem;
+  --nv-size-small: 0.8125rem;
+  --nv-size-badge: 0.75rem;
+
+  --nv-lh-display: 0.95;
+  --nv-lh-tight:   1.5;
+  --nv-lh-body:    1.6;
+
+  --nv-track-display: -0.01em; /* −1% */
+  --nv-track-sub:      0.04em; /* +4% */
+  --nv-track-label:    0.25em; /* +25% */
+  --nv-track-badge:    0.05em; /* +5% */
+  --nv-track-note:     0.1em;
+
+  /* --- Espaciado · base 8 ---------------------------------------------- */
+  --nv-space-1: 8px;
+  --nv-space-2: 16px;
+  --nv-space-3: 24px;
+  --nv-space-4: 32px;
+  --nv-space-6: 48px;
+  --nv-space-8: 64px;  /* sección móvil */
+  --nv-space-12: 96px; /* sección desktop */
+
+  --nv-section-y: var(--nv-space-8);
+  --nv-gutter:    var(--nv-space-2); /* margen lateral móvil */
+  --nv-grid-gap:  var(--nv-space-2); /* gutter móvil */
+  --nv-maxw:      1200px;
+
+  /* --- Radios ---------------------------------------------------------- */
+  --nv-radius-card:  16px;
+  --nv-radius-image: 12px;
+  --nv-radius-pill:  999px;
+
+  /* --- Sombras (solo mockups y botón flotante; el resto es UI plana) --- */
+  --nv-shadow-mockup:        0 24px 40px -12px rgba(0, 0, 0, 0.6);
+  --nv-shadow-mockup-silver: 0 24px 40px -14px rgba(11, 11, 12, 0.35);
+  --nv-shadow-float:         0 10px 24px rgba(0, 0, 0, 0.45);
+
+  /* --- Contornos (reemplazan bordes: inset box-shadow) ----------------- */
+  --nv-outline-white:  inset 0 0 0 1.5px var(--nv-white);
+  --nv-outline-gold:   inset 0 0 0 1.5px var(--nv-gold);
+  --nv-outline-hair:   inset 0 0 0 1px var(--nv-graphite-line);
+  --nv-outline-ink:    inset 0 0 0 1px rgba(11, 11, 12, 0.12);
+
+  /* --- Componentes ----------------------------------------------------- */
+  --nv-button-height: 52px;
+  --nv-float-size:    60px;
+  --nv-card-ratio:    4 / 5;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nv-section-y: var(--nv-space-12);
+    --nv-gutter:    var(--nv-space-6);
+    --nv-grid-gap:  var(--nv-space-3); /* gutter desktop */
+  }
+}

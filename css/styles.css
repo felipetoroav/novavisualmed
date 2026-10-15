@@ -1,0 +1,523 @@
+/* ==========================================================================
+   NOVAVISUAL PUBLICIDAD — Landing
+   Componentes del sistema de diseño v1.0. UI plana: sombras solo en los
+   mockups de producto y en el botón flotante.
+   ========================================================================== */
+
+/* --- Reset mínimo ------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--nv-black);
+  color: var(--nv-white);
+  font-family: var(--nv-font-body);
+  font-size: var(--nv-size-body);
+  line-height: var(--nv-lh-body);
+  font-weight: 400;
+}
+
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, p, ol, ul, figure { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+
+/* Foco visible en todos los elementos interactivos */
+:where(a, button):focus-visible {
+  outline: 3px solid var(--nv-gold);
+  outline-offset: 3px;
+}
+.nv-section--silver :where(a, button):focus-visible {
+  outline-color: var(--nv-purple);
+}
+
+.nv-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- Layout ------------------------------------------------------------- */
+.nv-section {
+  position: relative;
+  padding: var(--nv-section-y) var(--nv-gutter);
+  overflow: hidden;
+}
+
+.nv-section--dark   { background: var(--nv-black); }
+.nv-section--silver {
+  background: var(--nv-silver-gradient);
+  color: var(--nv-black);
+}
+
+.nv-wrap {
+  position: relative;
+  max-width: var(--nv-maxw);
+  margin-inline: auto;
+}
+
+/* Textura de papel arrugado al 10% sobre los fondos negros.
+   Tile de 256px en escala de grises, modo screen (≈3 KB). */
+.nv-section--dark::before,
+.nv-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/img/paper-texture.png");
+  background-size: 256px 256px;
+  opacity: var(--nv-paper-opacity);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* --- Tipografía --------------------------------------------------------- */
+.nv-display {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-display);
+  line-height: var(--nv-lh-display);
+  letter-spacing: var(--nv-track-display);
+  text-transform: uppercase;
+}
+
+.nv-label {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-label);
+  font-size: var(--nv-size-small);
+  letter-spacing: var(--nv-track-label);
+  text-transform: uppercase;
+  color: var(--nv-silver);
+}
+.nv-section--silver .nv-label { color: var(--nv-ink-soft); }
+
+.nv-lead {
+  font-size: var(--nv-size-sub);
+  line-height: var(--nv-lh-tight);
+  color: var(--nv-silver);
+}
+.nv-section--silver .nv-lead { color: var(--nv-ink-soft); }
+
+.nv-h1 { font-size: var(--nv-size-h1); }
+.nv-h2 { font-size: var(--nv-size-h2); }
+
+.nv-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-1);
+}
+
+/* --- Marca -------------------------------------------------------------- */
+.nv-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: inherit;
+}
+.nv-logo__word {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-display);
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: var(--nv-track-display);
+  text-transform: uppercase;
+}
+.nv-logo__spark { width: 9px; height: 9px; flex-shrink: 0; fill: currentColor; }
+.nv-logo__tag {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-label);
+  font-size: 0.5625rem;
+  letter-spacing: var(--nv-track-label);
+  text-transform: uppercase;
+  color: var(--nv-silver);
+}
+.nv-section--silver .nv-logo__tag { color: var(--nv-ink-soft); }
+
+@media (min-width: 768px) {
+  .nv-logo__word { font-size: 1.75rem; }
+  .nv-logo__spark { width: 12px; height: 12px; }
+  .nv-logo__tag { font-size: 0.6875rem; }
+}
+
+/* Destello de 4 puntas: máximo uno por pantalla */
+.nv-spark { width: 20px; height: 20px; fill: currentColor; }
+
+/* --- Botones ------------------------------------------------------------ */
+.nv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: var(--nv-button-height);
+  padding: 0 28px;
+  border: 0;
+  border-radius: var(--nv-radius-pill);
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-strong);
+  font-size: 0.9375rem;
+  letter-spacing: var(--nv-track-sub);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Primario · WhatsApp — único uso del verde */
+.nv-btn--wa {
+  background: var(--nv-whatsapp);
+  color: var(--nv-white);
+}
+.nv-btn--wa:hover { background: #1FBB59; }
+
+/* Secundario · sobre negro (contorno blanco 1.5px) */
+.nv-btn--ghost {
+  box-shadow: var(--nv-outline-white);
+  color: var(--nv-white);
+  background: transparent;
+}
+.nv-btn--ghost:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* Secundario · sobre plata (negro sólido) */
+.nv-btn--solid {
+  background: var(--nv-black);
+  color: var(--nv-white);
+}
+.nv-btn--solid:hover { background: var(--nv-graphite); }
+
+.nv-btn--block { display: flex; width: 100%; }
+.nv-btn__icon { width: 22px; height: 22px; flex-shrink: 0; fill: currentColor; }
+
+/* Flotante · WhatsApp */
+.nv-float {
+  position: fixed;
+  right: var(--nv-space-2);
+  bottom: var(--nv-space-2);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nv-float-size);
+  height: var(--nv-float-size);
+  border-radius: var(--nv-radius-pill);
+  background: var(--nv-whatsapp);
+  box-shadow: var(--nv-shadow-float);
+}
+.nv-float:hover { background: #1FBB59; }
+.nv-float svg { width: 30px; height: 30px; fill: var(--nv-white); }
+
+@media (min-width: 768px) {
+  .nv-float { right: var(--nv-space-3); bottom: var(--nv-space-3); }
+}
+
+/* --- Hero --------------------------------------------------------------- */
+.nv-hero {
+  position: relative;
+  padding: var(--nv-space-3) var(--nv-gutter) var(--nv-space-8);
+  background: var(--nv-black);
+  overflow: hidden;
+}
+
+/* Trazo de marca: línea continua blanca, entra y sale por las esquinas */
+.nv-hero__stroke {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.nv-hero__stroke path {
+  fill: none;
+  stroke: var(--nv-white);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nv-hero__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nv-space-2);
+  min-height: 44px;
+}
+
+.nv-hero__nav {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: var(--nv-radius-pill);
+  box-shadow: var(--nv-outline-white);
+  color: var(--nv-white);
+  text-decoration: none;
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-strong);
+  font-size: 0.75rem;
+  letter-spacing: var(--nv-track-sub);
+  text-transform: uppercase;
+}
+.nv-hero__nav:hover { background: rgba(255, 255, 255, 0.12); }
+
+.nv-hero__content {
+  position: relative;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-2);
+}
+/* El contenido del hero se alinea con el logo (nv-wrap), no se centra. */
+.nv-hero__content .nv-h1 { max-width: 760px; }
+.nv-hero__accent { color: var(--nv-gold); }
+.nv-hero__lead { max-width: 620px; }
+.nv-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: var(--nv-space-2);
+}
+
+@media (min-width: 768px) {
+  .nv-hero { padding: var(--nv-space-4) var(--nv-gutter) var(--nv-space-12); }
+  .nv-hero__content { margin-top: 160px; }
+  .nv-hero__actions { flex-direction: row; }
+  .nv-hero__actions .nv-btn { width: auto; }
+}
+
+/* --- Catálogo ----------------------------------------------------------- */
+.nv-catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--nv-grid-gap);
+  margin-top: var(--nv-space-3);
+}
+
+@media (min-width: 1024px) {
+  .nv-catalog { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Tarjeta de producto: 4:5 · radio 16 · título arriba centrado ·
+   subtítulo en el acento · mockup con sombra · badge inferior izquierdo.
+   Un solo acento por tarjeta (--nv-accent). */
+.nv-card__panel {
+  position: relative;
+  aspect-ratio: var(--nv-card-ratio);
+  border-radius: var(--nv-radius-card);
+  overflow: hidden;
+  background: var(--nv-black);
+  color: var(--nv-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 12px 12px;
+  color: var(--nv-white);
+  text-decoration: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.nv-card__panel:hover {
+  box-shadow: inset 0 0 0 1.5px var(--nv-accent);
+}
+
+.nv-card__title {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-display);
+  font-size: clamp(1.25rem, 4.2vw, 2.125rem);
+  line-height: var(--nv-lh-display);
+  letter-spacing: var(--nv-track-display);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--nv-accent);
+}
+
+.nv-card__subtitle {
+  margin-top: 6px;
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-label);
+  font-size: clamp(0.5625rem, 1.8vw, 0.875rem);
+  letter-spacing: var(--nv-track-sub);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--nv-accent);
+}
+
+/* El mockup es PNG/WebP sin fondo; la sombra la pone la tarjeta. */
+.nv-card__media {
+  flex: 1;
+  width: 80%;
+  min-height: 0;
+  margin: 12px 0 38px;
+  border-radius: var(--nv-radius-image);
+  background: var(--nv-graphite-line);
+  box-shadow: var(--nv-shadow-mockup);
+  overflow: hidden;
+}
+.nv-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Badge NV · blanco 15% + blur 10px */
+.nv-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  border-radius: var(--nv-radius-pill);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-label);
+  font-size: 0.6875rem;
+  letter-spacing: var(--nv-track-badge);
+  text-transform: uppercase;
+  color: var(--nv-white);
+}
+.nv-badge__text { display: none; }
+
+.nv-badge__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: var(--nv-radius-pill);
+  box-shadow: inset 0 0 0 1.5px var(--nv-white);
+  font-weight: var(--nv-weight-badge);
+  font-size: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 1024px) {
+  .nv-card__panel { padding: 32px 20px 20px; }
+  .nv-card__media { margin: 20px 0 48px; }
+  .nv-badge__text { display: inline; }
+}
+
+/* --- Cómo funciona ------------------------------------------------------ */
+.nv-steps {
+  display: grid;
+  gap: 12px;
+  margin-top: var(--nv-space-3);
+}
+.nv-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: var(--nv-space-3);
+  border-radius: var(--nv-radius-card);
+  background: var(--nv-graphite);
+}
+.nv-step__num {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-display);
+  font-size: var(--nv-size-h3);
+  line-height: var(--nv-lh-display);
+  color: var(--nv-gold);
+}
+.nv-step__body { display: flex; flex-direction: column; gap: 4px; }
+.nv-step__title {
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-strong);
+  font-size: var(--nv-size-body);
+  letter-spacing: var(--nv-track-sub);
+  text-transform: uppercase;
+}
+.nv-step__text {
+  font-size: 0.875rem;
+  line-height: var(--nv-lh-body);
+  color: var(--nv-silver);
+}
+
+@media (min-width: 768px) {
+  .nv-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--nv-space-3); }
+  .nv-step { flex-direction: column; gap: 12px; padding: var(--nv-space-4); }
+}
+
+/* --- CTA final ---------------------------------------------------------- */
+.nv-cta { text-align: center; }
+.nv-cta .nv-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 640px;
+}
+.nv-cta__lead { max-width: 420px; }
+.nv-cta .nv-btn { align-self: stretch; margin-top: var(--nv-space-1); }
+
+@media (min-width: 768px) {
+  .nv-cta .nv-btn { align-self: center; padding-inline: var(--nv-space-6); }
+}
+
+/* --- Footer ------------------------------------------------------------- */
+.nv-footer {
+  /* Espacio extra abajo para que el botón flotante no tape el contenido. */
+  padding: var(--nv-space-6) var(--nv-gutter)
+           calc(var(--nv-space-6) + var(--nv-float-size)) var(--nv-gutter);
+  background: var(--nv-black);
+  border-top: 1px solid var(--nv-graphite);
+}
+.nv-footer .nv-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-3);
+  align-items: flex-start;
+}
+.nv-footer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-1);
+  font-family: var(--nv-font-display);
+  font-weight: var(--nv-weight-label);
+  font-size: var(--nv-size-badge);
+  letter-spacing: var(--nv-track-badge);
+  text-transform: uppercase;
+  color: var(--nv-silver);
+}
+.nv-footer__meta a { color: var(--nv-gold); text-decoration: none; }
+.nv-footer__meta a:hover { color: var(--nv-gold-hover); text-decoration: underline; }
+
+@media (min-width: 768px) {
+  .nv-footer { padding-bottom: var(--nv-space-6); }
+  .nv-footer .nv-wrap { flex-direction: row; justify-content: space-between; align-items: center; }
+  .nv-footer__meta { flex-direction: row; align-items: center; gap: var(--nv-space-2); }
+}
+
+/* --- 404 ---------------------------------------------------------------- */
+.nv-error {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--nv-space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* --- Variantes del trazo de marca --------------------------------------- */
+.nv-hero__stroke--lg { display: none; }
+.nv-hero__stroke--lg path { stroke-width: 20; }
+.nv-hero__stroke--sm path { stroke-width: 12; }
+
+@media (min-width: 768px) {
+  .nv-hero__stroke--sm { display: none; }
+  .nv-hero__stroke--lg { display: block; height: 560px; }
+}
